@@ -20,7 +20,7 @@ public:
 	void setStartDate(const Date&d);
 	void setTerm(unsigned t);
 	void setPrice(unsigned p);
-	char*getName()const;
+	const char*getName()const;
 	unsigned getMins()const;
 	unsigned getSms()const;
 	unsigned getMbs()const;
