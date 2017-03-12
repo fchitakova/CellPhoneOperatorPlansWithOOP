@@ -11,6 +11,7 @@ Plan::Plan()
 	MBs = 0;
 	term = 0;
 	name = new char[MAX_NAMELEN];
+	name[0] = '\0';
 }
 
 void Plan::Copy(const Plan&rhs)
@@ -32,6 +33,7 @@ void Plan::Destroy()
 
 Plan::Plan(const Plan&rhs)
 {
+	name = NULL;
 	Copy(rhs);
 
 }
@@ -58,14 +60,20 @@ void Plan::setName(const char*n)
 }
 void Plan::setMins(const unsigned m)
 {
-	minutes = m;
+	if (minutes < 0)
+		minutes = m;
+	minutes = -m;
 }
 void Plan::setSms(const unsigned s)
 {
+	if (SMSs < 0)
+		SMSs = -s;
 	SMSs = s;
 }
 void Plan::setMbs(const unsigned mb)
 {
+	if (MBs < 0)
+		MBs = -mb;
 	MBs = mb;
 }
 void Plan::setStartDate(const Date&d)
@@ -75,13 +83,17 @@ void Plan::setStartDate(const Date&d)
 
 void Plan ::setTerm(unsigned t)
 {
+	if (term<0)
+		term = -t;	
 	term = t;
 }
 void Plan::setPrice(unsigned p)
 {
-	price = p;
+	if (price<0)
+	   price = p;
+    price = -p;
 }
-char*Plan::getName()const
+const char*Plan::getName()const
 {
 	return this->name;
 }
@@ -109,4 +121,5 @@ Date Plan::getStartDate()const
 {
 	return this->StartDate;
 }
+
 
