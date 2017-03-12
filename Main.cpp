@@ -31,19 +31,19 @@ Plan* filterByPreference(Plan*plans,unsigned &size,unsigned mins, unsigned sms,u
 void InsertionSort(Plan *arr, size_t size)
 {
 
-	unsigned value = 0;
-	unsigned emptyPos = 0;
+	Plan value;
+	unsigned emptyPos = 0; //position to shift
 
 	for (size_t i = 1; i <= size - 1; i++)
 	{
-		value = arr[i].getPrice();
+		value = arr[i];
 		emptyPos = i;
-		while (emptyPos>0 && arr[emptyPos - 1].getPrice() > value)
+		while (emptyPos>0 && arr[emptyPos - 1].getPrice() > value.getPrice())
 		{
-			arr[emptyPos].setPrice( arr[emptyPos - 1].getPrice());
-			emptyPos -= 1; //to leave this loop
+			arr[emptyPos] = arr[emptyPos - 1];
+			emptyPos--;
 		}
-		arr[emptyPos].setPrice(value);
+		arr[emptyPos] = value;
 	}
 }
 
