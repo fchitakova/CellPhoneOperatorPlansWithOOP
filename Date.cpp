@@ -8,12 +8,6 @@ Date::Date()
 	year = 2017;
 }
 
-void Date::Copy(const Date&rhs)
-{
-	setDay(rhs.day);
-	setMonth(rhs.month);
-	setYear(rhs.year);
-}
 
 Date::Date(short d,short m,int y)
 {
@@ -27,23 +21,16 @@ Date::~Date()
 	//
 }
 
-Date& Date::operator=(const Date&rhs)
-{
-	if (this != &rhs && isValid(rhs))
-	{
-		Copy(rhs);
-	}
-	return *this;
-}
-
 
 void Date::setDay(short d)
 {
+	if (d>=1 && d<=31)
    this-> day = d;
 }
 
 void Date::setMonth(short m)
 {
+	if (m>=1 && m<=12)
 	this->month = m;
 }
 
@@ -79,10 +66,3 @@ void Date::printDate()const
 	std::cout << day << '.' << month << '.' << year << '\n';
 }
 
-bool Date::isValid(const Date&d)const
-{
-	if (d.day < 1 && (d.month <1 || d.month > 12) && (d.year<2000 || d.year>2025) &&
-		(d.month == 2 && (d.day>29)) && ((d.month == 4 || d.month == 6 || d.month == 9 || d.month == 11) && d.day == 31))
-		return false;
-	return true;
-}
